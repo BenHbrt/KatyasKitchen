@@ -1,0 +1,21 @@
+.title_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    & > h1 {
+        font-weight: 800;
+        margin-right: 1em;
+        font-size: 2.5em;
+    }
+
+    & > img {
+        align-self: center;
+        width: 6em;
+    }
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+}

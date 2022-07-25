@@ -2,12 +2,12 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 const TypesList = () => {
-
+    // This was a practice component
     const [types, setTypes] = useState([]);
 
     const loadData = async () => {
         const response = await axios.get(`/api/types/index`);
-        console.log(response.data);
+        // console.log(response.data);
         setTypes(response.data);
     }
 

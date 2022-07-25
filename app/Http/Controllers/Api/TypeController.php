@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Type;
 
 class TypeController extends Controller
-{
-    public function index()
-    {
-        $types = Type::orderBy('name')->get();
+{ 
+    // This was a practice API
+    // public function index()
+    // {
+    //     $types = Type::orderBy('name')->get();
 
-        return $types;
-    }
+    //     return $types;
+    // }
 }

@@ -45,7 +45,7 @@ class DishSeeder extends Seeder
                 'notes' => ""
             ], [
                 'type_id' => 2,
-                'name' => 'Schntizel',
+                'name' => 'Schnitzel',
                 'heading' => 'Central European stuff',
                 'method' => 'Just flour it, egg it, bread it, and fry it.',
                 'pic_name' => 'Example4.jpg',

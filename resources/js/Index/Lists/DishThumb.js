@@ -6,7 +6,7 @@ const DishThumb = ({ dish, setSelectedDish }) => {
 
     return (
         <div className="dishthumb" onClick={clickHandler}>
-            <img src={`/img/dishes/${dish.pic_name}`} />
+            <img src={`/img/dishes/${dish.pic_name}`} alt="Picture of a dish"/>
             <div className="dishthumb_text">
                 <p>{dish.name}</p>
             </div>

@@ -71,7 +71,7 @@ class IngredientSeeder extends Seeder
                 'unit' => 'tbsp'
             ], [
                 'dish_id' => 2,
-                'ingredient' => 'Yest',
+                'ingredient' => 'Yeast',
                 'amount' => 10,
                 'unit' => 'g'
             ], [

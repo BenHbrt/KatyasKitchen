@@ -6,6 +6,17 @@
     border-radius: 1em;
     align-self: start;
 
+    &_title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        & > img {
+            width: 1.7em;
+            align-self: center;
+        }
+    }
+
     & > img {
         max-width: 100%;
         border-radius: 1em;

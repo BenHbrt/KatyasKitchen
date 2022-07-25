@@ -18,7 +18,7 @@ const App = () => {
             <Navigation setSelectedType={setSelectedType}/>
             <div className="main">
                 <DishesList setSelectedDish={setSelectedDish} selectedType={selectedType}/>
-                {selectedDish && <DishPreview selectedDish={selectedDish}/>}
+                {selectedDish && <DishPreview selectedDish={selectedDish} setSelectedDish={setSelectedDish}/>}
             </div>
         </div>
         

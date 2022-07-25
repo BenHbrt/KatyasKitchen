@@ -1,5 +1,18 @@
 nav {
-    background-color: blue;
+    background-color: lightgray;
     display: flex;
     flex-direction: row;
+}
+
+.nav_option {
+    min-width: 6em;
+    text-align: center;
+
+    &:hover {
+        background-color: gray;
+    }
+
+    & > select {
+        margin-left: 0.2em;
+    }
 }

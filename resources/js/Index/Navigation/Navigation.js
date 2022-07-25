@@ -7,7 +7,7 @@ const Navigation = ({ setSelectedType }) => {
 
     const loadData = async () => {
         const response = await axios.get(`/api/types/index`);
-        console.log(response.data);
+        // console.log(response.data);
         setTypes(response.data)
     }
 
@@ -22,12 +22,18 @@ const Navigation = ({ setSelectedType }) => {
 
     return (
         <nav>
-            <select onChange={changeHandler}>
-                    <option key={0} value={0}>All</option>
-                {types && types.map((type) => (
-                    <option key={type.id} value={type.id}>{type.name}</option>
-                ))}
-            </select>
+            <div className="nav_option">
+                Home
+            </div>
+            <div className="nav_option">
+                View: 
+                <select onChange={changeHandler}>
+                        <option key={0} value={0}>All</option>
+                    {types && types.map((type) => (
+                        <option key={type.id} value={type.id}>{type.name}</option>
+                    ))}
+                </select>
+            </div>
         </nav>
     )
 }

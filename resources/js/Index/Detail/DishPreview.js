@@ -1,16 +1,24 @@
-const DishPreview = ({ selectedDish }) => {
+const DishPreview = ({ selectedDish, setSelectedDish }) => {
+    
+    const clickHandler = () => {
+        setSelectedDish(null)
+    }
+    
     return (
         <div className="dishpreview">
             {selectedDish && 
             <>
-            <h2>{selectedDish.name}</h2>
+            <div className="dishpreview_title">
+                <h2>{selectedDish.name}</h2>
+                <img src={"/img/assets/Close.png"} alt="close icon" onClick={clickHandler} />
+            </div>
             <p>{selectedDish.heading}</p>
-            <img src={`/img/dishes/${selectedDish.pic_name}`} />
+            <img src={`/img/dishes/${selectedDish.pic_name}`} alt="Picture of a dish" />
             <p><strong>Ingredients: </strong></p>
             <table>
             <tbody>
             {selectedDish.ingredients.map((ingredient) => (
-                <tr>
+                <tr key={ingredient.id}>
                     <td>{ingredient.ingredient}</td>
                     <td>{ingredient.amount}{ingredient.unit}</td>
                 </tr>

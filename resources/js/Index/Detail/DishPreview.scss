@@ -1,4 +1,13 @@
 .dishpreview {
-    flex: 40;
-    background-color: lightpink;
+    width: 30%;
+    padding: 0em 1.5em 0.5em;;
+    margin: 1.5em;
+    box-shadow: 2px 2px 2px 2px lightgrey;
+    border-radius: 1em;
+    align-self: start;
+
+    & > img {
+        max-width: 100%;
+        border-radius: 1em;
+    }
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import DishThumb from './DishThumb';
 
-const DishesList = () => {
+const DishesList = ({ setSelectedDish }) => {
 
     const [dishes, setDishes] = useState([]);
 
@@ -19,7 +19,7 @@ const DishesList = () => {
     return (
         <div className="disheslist">
             {dishes.map((dish) => (
-                <DishThumb key={dish.id} dish={dish} />
+                <DishThumb key={dish.id} dish={dish} setSelectedDish={setSelectedDish}/>
             ))}
         </div>
     )

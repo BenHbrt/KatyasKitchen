@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('type_id');
             $table->string('name');
-            $table->string('heading');
-            $table->text('method');
-            $table->string('pic_name');
-            $table->text('notes');
+            $table->string('heading')->nullable();
+            $table->text('method')->nullable();
+            $table->string('pic_name')->nullable();
+            $table->string('source')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

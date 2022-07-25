@@ -10,7 +10,7 @@ class DishController extends Controller
 {
     public function index()
     {
-        $dishes = Dish::select('id', 'name', 'heading', 'pic_name')
+        $dishes = Dish::select('id', 'name', 'heading', 'pic_name', 'type_id')
                     ->orderBy('name')
                     ->with('ingredients')       
                     ->get();

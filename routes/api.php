@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// This was a practice API
-// Route::get('/types/index', ['App\Http\Controllers\Api\TypeController', 'index']);
+Route::get('/types/index', ['App\Http\Controllers\Api\TypeController', 'index']);
 
 Route::get('/dishes/index', ['App\Http\Controllers\Api\DishController', 'index']);

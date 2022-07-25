@@ -8,11 +8,11 @@ use App\Models\Type;
 
 class TypeController extends Controller
 { 
-    // This was a practice API
-    // public function index()
-    // {
-    //     $types = Type::orderBy('name')->get();
+    public function index()
+    {
+        $types = Type::select('id', 'name')
+                    ->orderBy('name')->get();
 
-    //     return $types;
-    // }
+        return $types;
+    }
 }

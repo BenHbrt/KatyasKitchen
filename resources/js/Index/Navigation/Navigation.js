@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import axios from 'axios'
 
 const Navigation = ({ setSelectedType }) => {
@@ -23,7 +24,9 @@ const Navigation = ({ setSelectedType }) => {
     return (
         <nav>
             <div className="nav_option">
+                <Link to={`/`}>
                 Home
+                </Link>
             </div>
             <div className="nav_option">
                 View: 

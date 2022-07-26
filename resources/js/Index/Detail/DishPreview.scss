@@ -6,6 +6,12 @@
     border-radius: 1em;
     align-self: start;
 
+    & a {
+        text-decoration: none;
+        color: black;
+        align-self: center;
+    }
+
     &_title {
         display: flex;
         flex-direction: row;
@@ -15,10 +21,15 @@
             width: 1.7em;
             align-self: center;
         }
+
+        &_main {
+            display: flex;
+            flex-direction: row;  
+        }
     }
 
     & > img {
         max-width: 100%;
         border-radius: 1em;
-    }
+    }  
 }

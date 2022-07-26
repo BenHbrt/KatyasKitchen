@@ -233,11 +233,11 @@ class IngredientSeeder extends Seeder
                 'dish_id' => 5,
                 'ingredient' => 'Flour',
                 'amount' => 205,
-                'unit' => 'tsp'
+                'unit' => 'g'
             ], [
                 'dish_id' => 5,
                 'ingredient' => 'Chopped Walnuts',
-                'amount' => 100,
+                'amount' => 80,
                 'unit' => 'g'
             ], [
                 'dish_id' => 6,

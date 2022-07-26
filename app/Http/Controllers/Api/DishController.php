@@ -17,5 +17,15 @@ class DishController extends Controller
 
         return $dishes;
     }
+
+    public function dish($id)
+    {
+        $dish = Dish::where('id', '=', $id)
+                    ->select('id', 'name', 'heading', 'method', 'notes', 'pic_name', 'source')
+                    ->with('ingredients:dish_id,ingredient,amount,unit')       
+                    ->get();
+
+        return $dish;
+    }
 }
 

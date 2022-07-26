@@ -26,7 +26,7 @@ class DishSeeder extends Seeder
                 'method' => 'Just cook it.',
                 'pic_name' => 'Example1.jpg',
                 'source' => "My mother's wisdom",
-                'notes' => ""
+                'notes' => "Remember to read the instructions!"
             ], [
                 'type_id' => 3,
                 'name' => 'Bread',
@@ -34,7 +34,7 @@ class DishSeeder extends Seeder
                 'method' => 'Just kneed it, let it rest, and bake it',
                 'pic_name' => 'Example2.jpg',
                 'source' => "Somewhere on the internet",
-                'notes' => ""
+                'notes' => "Remember to read the instructions!"
             ], [
                 'type_id' => 6,
                 'name' => 'Chilli con Carne',
@@ -42,7 +42,7 @@ class DishSeeder extends Seeder
                 'method' => 'Just cook it.',
                 'pic_name' => 'Example3.jpg',
                 'source' => "The internet and experimentation",
-                'notes' => ""
+                'notes' => "Remember to read the instructions!"
             ], [
                 'type_id' => 2,
                 'name' => 'Schnitzel',
@@ -50,7 +50,7 @@ class DishSeeder extends Seeder
                 'method' => 'Just flour it, egg it, bread it, and fry it.',
                 'pic_name' => 'Example4.jpg',
                 'source' => "Centuries of Czech/German tradition",
-                'notes' => ""
+                'notes' => "Remember to read the instructions!"
             ], [
                 'type_id' => 3,
                 'name' => 'Banana Bread',
@@ -58,7 +58,7 @@ class DishSeeder extends Seeder
                 'method' => 'Just bake it.',
                 'pic_name' => 'Example5.jpg',
                 'source' => "https://www.simplyrecipes.com/recipes/banana_bread/",
-                'notes' => ""
+                'notes' => "Remember to read the instructions!"
             ], [
                 'type_id' => 6,
                 'name' => 'Hummus',
@@ -66,7 +66,7 @@ class DishSeeder extends Seeder
                 'method' => 'Stick it all in a blender.... and blend!',
                 'pic_name' => 'Example6.jpg',
                 'source' => "Experimentation during the viral apocalypse",
-                'notes' => ""
+                'notes' => "Remember to read the instructions!"
             ],
         ];
 

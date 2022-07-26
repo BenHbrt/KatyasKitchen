@@ -1,0 +1,31 @@
+.dishrecipe {
+    padding: 0 2em;
+
+    & a {
+        text-decoration: none;
+        color: black;
+        align-self: center;
+    }
+    
+    &_main {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    
+        &_left {
+            width: 30%;
+
+            & img {
+                width: 100%;
+            }
+        }
+    
+        &_centre {
+            margin: 0 5em;
+        }
+    
+        // &_right {
+        //     width: 30%;
+        // }
+    }
+}

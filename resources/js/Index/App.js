@@ -1,27 +1,28 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navigation from "./Navigation/Navigation";
-import DishesList from "./Lists/DishesList";
-import DishPreview from "./Detail/DishPreview";
+import DishRecipe from './Detail/DishRecipe';
+import Homepage from './Homepage';
 
 const App = () => {
 
-    const [selectedDish, setSelectedDish] = useState(null)
     const [selectedType, setSelectedType] = useState(0)
 
     return (
-        <div className="page">
-            <div className="title_bar">
-                <h1>Katya's Kitchen</h1>
-                <img src="img/assets/Title.png" alt="Plate and cutlery" />
+        <BrowserRouter>
+            <div className="page">
+                <div className="title_bar">
+                    <h1>Katya's Kitchen</h1>
+                    <img src="img/assets/Title.png" alt="Plate and cutlery" />
+                </div>
+                <Navigation setSelectedType={setSelectedType}/>
+                <Routes>
+                    <Route path="/" element={<Homepage selectedType={selectedType}/>} />
+                    <Route path="/dish/:id" element={<DishRecipe />} />
+                </Routes>
             </div>
-            <Navigation setSelectedType={setSelectedType}/>
-            <div className="main">
-                <DishesList setSelectedDish={setSelectedDish} selectedType={selectedType}/>
-                {selectedDish && <DishPreview selectedDish={selectedDish} setSelectedDish={setSelectedDish}/>}
-            </div>
-        </div>
-        
+        </BrowserRouter>
     )
 }
 export default App;

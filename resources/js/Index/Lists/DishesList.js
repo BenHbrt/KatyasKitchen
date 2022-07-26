@@ -6,8 +6,6 @@ const DishesList = ({ setSelectedDish, selectedType }) => {
 
     const [dishes, setDishes] = useState([]);
 
-    
-
     const loadData = async () => {
         const response = await axios.get(`/api/dishes/index`);
         let filteredDishes = []

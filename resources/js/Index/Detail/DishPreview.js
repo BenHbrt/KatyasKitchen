@@ -1,3 +1,5 @@
+import ViewButton from "../Buttons/ViewButton"
+
 const DishPreview = ({ selectedDish, setSelectedDish }) => {
     
     const clickHandler = () => {
@@ -9,7 +11,10 @@ const DishPreview = ({ selectedDish, setSelectedDish }) => {
             {selectedDish && 
             <>
             <div className="dishpreview_title">
-                <h2>{selectedDish.name}</h2>
+                <div className="dishpreview_title_main">
+                    <h2>{selectedDish.name}</h2>
+                    <ViewButton id={selectedDish.id}/>
+                </div>
                 <img src={"/img/assets/Close.png"} alt="close icon" onClick={clickHandler} />
             </div>
             <p>{selectedDish.heading}</p>

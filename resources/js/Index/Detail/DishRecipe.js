@@ -25,7 +25,7 @@ const DishRecipe = () => {
             <div className="dishpreview_title_main">
                 <h2>{dish.name}</h2>
                 <EditButton id={2}/>
-                <DeleteButton id={2}/>
+                <DeleteButton id={dish.id}/>
             </div>
             <div className="dishrecipe_main">
                 <div className="dishrecipe_main_left">          
@@ -35,6 +35,7 @@ const DishRecipe = () => {
                 </div>
                 <div className="dishrecipe_main_centre">
                     <h3>Ingredients:</h3>
+                    <table>
                     <tbody>
                     {dish.ingredients.map((ingredient) => (
                         <tr key={ingredient.id}>
@@ -43,6 +44,7 @@ const DishRecipe = () => {
                         </tr>
                     ))}
                     </tbody>
+                    </table>
                 </div>
                 <div className="dishrecipe_main_right">
                     <h3>Method:</h3>

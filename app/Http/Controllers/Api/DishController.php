@@ -27,5 +27,12 @@ class DishController extends Controller
 
         return $dish;
     }
+
+    public function destroy(Request $request)
+    {
+        $dish = Dish::findOrFail($request->dishID);
+
+        $dish->delete();
+    }
 }
 

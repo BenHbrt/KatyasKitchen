@@ -29,6 +29,11 @@ const Navigation = ({ setSelectedType }) => {
                 </Link>
             </div>
             <div className="nav_option">
+                <Link to={`/dish/form`}>
+                Add Dish
+                </Link>
+            </div>
+            <div className="nav_option">
                 View: 
                 <select onChange={changeHandler}>
                         <option key={0} value={0}>All</option>

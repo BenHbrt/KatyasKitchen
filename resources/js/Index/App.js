@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./Navigation/Navigation";
 import DishRecipe from './Detail/DishRecipe';
 import Homepage from './Homepage';
+import DishForm from './Forms/DishForm';
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
                 <Navigation setSelectedType={setSelectedType}/>
                 <Routes>
                     <Route path="/" element={<Homepage selectedType={selectedType}/>} />
+                    <Route path="/dish/form" element={<DishForm />} />
                     <Route path="/dish/:id" element={<DishRecipe />} />
                 </Routes>
             </div>

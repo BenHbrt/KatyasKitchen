@@ -8,6 +8,7 @@ const DishesList = ({ setSelectedDish, selectedType }) => {
 
     const loadData = async () => {
         const response = await axios.get(`/api/dishes/index`);
+        console.log(response.data)
         let filteredDishes = []
         if (selectedType == 0) {
             setDishes(response.data);

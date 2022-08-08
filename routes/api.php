@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/types/index', ['App\Http\Controllers\Api\TypeController', 'index']);
 Route::get('/units/index', ['App\Http\Controllers\Api\UnitController', 'index']);
 Route::get('/dishes/index', ['App\Http\Controllers\Api\DishController', 'index']);
+Route::get('/dishes/index/names', ['App\Http\Controllers\Api\DishController', 'indexNames']);
 Route::post('/dishes/delete', ['App\Http\Controllers\Api\DishController', 'destroy']);
 Route::post('/dishes/create', ['App\Http\Controllers\Api\DishController', 'create']);
 Route::post('/dishes/edit/{id}', ['App\Http\Controllers\Api\DishController', 'edit']);

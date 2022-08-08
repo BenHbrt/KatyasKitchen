@@ -101,5 +101,15 @@ class DishController extends Controller
 
         return 'worked';
     }
+
+    public function indexNames()
+    {
+        $dishes = Dish::select('id', 'name')
+                    ->orderBy('name')
+                    ->with('ingredients')       
+                    ->get();
+
+        return $dishes;
+    }
 }
 

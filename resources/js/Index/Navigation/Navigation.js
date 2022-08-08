@@ -34,7 +34,7 @@ const Navigation = ({ setSelectedType }) => {
                 </Link>
             </div>
             <div className="nav_option">
-                <Link to={`/dish/form`}>
+                <Link to={`/shoppinglist`}>
                 Shopping List
                 </Link>
             </div>

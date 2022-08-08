@@ -5,6 +5,7 @@ import Navigation from "./Navigation/Navigation";
 import DishRecipe from './Detail/DishRecipe';
 import Homepage from './Homepage';
 import DishForm from './Forms/DishForm';
+import ShoppinglistForm from './Forms/ShoppinglistForm';
 
 const App = () => {
 
@@ -21,6 +22,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Homepage selectedType={selectedType}/>} />
                     <Route path="/dish/form" element={<DishForm />} />
+                    <Route path="/shoppinglist" element={<ShoppinglistForm />} />
                     <Route path="/dish/:id" element={<DishRecipe />} />
                     <Route path="/dish/:id/edit" element={<DishForm />} />
                 </Routes>

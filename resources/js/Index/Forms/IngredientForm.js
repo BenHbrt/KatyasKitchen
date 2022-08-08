@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-const IngredientForm = ({ units, setIngredients }) => {
+const IngredientForm = ({ units, setIngredients, ingredients }) => {
 
     const [data, setData] = useState({
-        "name": null,
-        "amount": null,
+        "name": "",
+        "amount": "",
         "unit": "each"
     })
 
@@ -19,20 +19,22 @@ const IngredientForm = ({ units, setIngredients }) => {
 
     const clickHandler = () => {
         setIngredients(current => [...current, {ingredient: data.name, amount: data.amount, unit: data.unit}])
+        setData({"name": "",
+        "amount": "",
+        "unit": "each"})
     }
 
     return (
-        <div>
-            <label>Name:</label><input type="text" name="name" onChange={handleUpdate}/>
-            <label>Amount:</label><input type="number" name="amount" onChange={handleUpdate}/>
-            <label>Unit:</label>
-            <select name="unit" onChange={handleUpdate}>
+        <tr>
+            <td><input type="text" name="name" onChange={handleUpdate} value={data.name}/></td>
+            <td><input type="number" name="amount" onChange={handleUpdate} value={data.amount}/>
+            <select name="unit" onChange={handleUpdate} value={data.unit}>
                 {units && units.map((unit) => (
                     <option key={unit.id} value={unit.unit}>{unit.unit}</option>
                 ))}
-            </select>
-            <p onClick={clickHandler}>Add</p>
-        </div>
+            </select></td>
+            <td><p onClick={clickHandler}>Add</p></td>  
+        </tr>
     )
 }
 export default IngredientForm;

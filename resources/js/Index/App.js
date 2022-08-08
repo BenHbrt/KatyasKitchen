@@ -22,6 +22,7 @@ const App = () => {
                     <Route path="/" element={<Homepage selectedType={selectedType}/>} />
                     <Route path="/dish/form" element={<DishForm />} />
                     <Route path="/dish/:id" element={<DishRecipe />} />
+                    <Route path="/dish/:id/edit" element={<DishForm />} />
                 </Routes>
             </div>
         </BrowserRouter>

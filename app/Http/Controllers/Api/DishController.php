@@ -22,7 +22,7 @@ class DishController extends Controller
     public function dish($id)
     {
         $dish = Dish::where('id', '=', $id)
-                    ->select('id', 'name', 'heading', 'method', 'notes', 'pic_name', 'source')
+                    ->select('id', 'name', 'heading', 'method', 'notes', 'pic_name', 'source', 'type_id')
                     ->with('ingredients:dish_id,ingredient,amount,unit')       
                     ->get();
 
@@ -40,8 +40,6 @@ class DishController extends Controller
     public function create(Request $request)
     {
         $dish = new Dish;
-
-
 
         $values = json_decode($request->values);
         $newImageName = time() . "-". $request->image->getClientOriginalName();
@@ -69,5 +67,39 @@ class DishController extends Controller
         return 'worked';
     }
     
+    public function edit(Request $request)
+    {
+        $values = json_decode($request->values);
+        $newImageName = time() . "-". $request->image->getClientOriginalName();
+
+        $dish = Dish::findOrFail($values->id);
+        $ingredientslist = Ingredient::where("dish_id", "=", $values->id)
+                                    ->get();
+        foreach($ingredientslist as $ing) {
+            $ing->delete();
+        }
+
+        $dish->name = $values->name;
+        $dish->type_id = $values->type_id;
+        $dish->heading = $values->heading;
+        $dish->source = $values->source;
+        $dish->method = $values->method;
+        $dish->notes = $values->notes;
+        $dish->pic_name = $newImageName;
+        $dish->save();
+
+        foreach($values->ingredients as $ingredientItem) {
+            $ingredient = new Ingredient;
+            $ingredient->ingredient = $ingredientItem->ingredient;
+            $ingredient->dish_id = $dish->id;
+            $ingredient->amount = $ingredientItem->amount;
+            $ingredient->unit = $ingredientItem->unit;
+            $ingredient->save();
+        }
+
+        $request->image->move(public_path('img/dishes'), $newImageName);
+
+        return 'worked';
+    }
 }
 

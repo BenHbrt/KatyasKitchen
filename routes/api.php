@@ -23,4 +23,5 @@ Route::get('/units/index', ['App\Http\Controllers\Api\UnitController', 'index'])
 Route::get('/dishes/index', ['App\Http\Controllers\Api\DishController', 'index']);
 Route::post('/dishes/delete', ['App\Http\Controllers\Api\DishController', 'destroy']);
 Route::post('/dishes/create', ['App\Http\Controllers\Api\DishController', 'create']);
+Route::post('/dishes/edit/{id}', ['App\Http\Controllers\Api\DishController', 'edit']);
 Route::get('/dishes/{id}', ['App\Http\Controllers\Api\DishController', 'dish']);

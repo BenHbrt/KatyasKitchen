@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const EditButton = ({ id }) => {
 
     return (
-        <Link to={`/dish/${id}`}>
+        <Link to={`/dish/${id}/edit`}>
             <div className="button_edit">         
                 <img src={"/img/assets/Edit.png"} alt="edit icon" />
                 Edit              

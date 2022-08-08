@@ -33,6 +33,11 @@ const Navigation = ({ setSelectedType }) => {
                 Add Dish
                 </Link>
             </div>
+            <div className="nav_option">
+                <Link to={`/dish/form`}>
+                Shopping List
+                </Link>
+            </div>
             <div className="nav_view">
                 View: 
                 <select onChange={changeHandler}>

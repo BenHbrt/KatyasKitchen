@@ -24,7 +24,7 @@ const DishRecipe = () => {
             <>
             <div className="dishpreview_title_main">
                 <h2>{dish.name}</h2>
-                <EditButton id={2}/>
+                <EditButton id={id}/>
                 <DeleteButton id={dish.id}/>
             </div>
             <div className="dishrecipe_main">

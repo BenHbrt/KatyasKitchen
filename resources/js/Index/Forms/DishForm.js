@@ -1,24 +1,34 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import IngredientForm from "./IngredientForm";
 
 const DishForm = () => {
 
     const navigate = useNavigate();
     const [image, setImage] = useState(null);
-    const [types, setTypes] = useState(null)
+    const [types, setTypes] = useState(null);
+    const [units, setUnits] = useState(null);
+    const [ingredients, setIngredients] = useState([])
     const [values, setValues] = useState({
         "name": null,
-        "type_id": null,
+        "type_id": 1,
         "heading": null,
         "source": null,
         "method": null,
-        "notes": null
+        "notes": null,
+        "ingredients": []
     })
 
-    const loadData = async () => {
+    const loadTypes = async () => {
         const response = await axios.get(`/api/types/index`);
         setTypes(response.data)
+    }
+
+    const loadUnits = async () => {
+        const response = await axios.get(`/api/units/index`);
+        // console.log(response.data)
+        setUnits(response.data)
     }
 
     const handleChange = (e) => {
@@ -34,6 +44,11 @@ const DishForm = () => {
         // console.log(e.target.value)
         setImage(e.target.files[0]);
     };
+
+    const showValues = () => {
+        console.log(values)
+        console.log(ingredients)
+    }
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,6 +61,8 @@ const DishForm = () => {
 
         const formData = new FormData();
 
+        values.ingredients = ingredients;
+        console.log(values)
         formData.append("image", image);
         formData.append("values", JSON.stringify(values));
 
@@ -65,11 +82,13 @@ const DishForm = () => {
     };
 
     useEffect(() => {
-        loadData();
-    }, []);
+        loadTypes();
+        loadUnits();
+    }, [ingredients]);
 
     return (
         <div className="dishform">
+            <p onClick={showValues}>Values</p>
             <form action="" method="post" onSubmit={(e) => {handleSubmit(e)}}>
                 <h2>Dish Form</h2>
                 <label>Name:</label>
@@ -79,7 +98,7 @@ const DishForm = () => {
                 <input type="text" name="heading" onChange={(e) => {handleChange(e)}}/>
                 <br/>
                 <label>Type:</label>
-                <select name="type_id" onChange={handleChange}>
+                <select name="type_id" onChange={handleChange} >
                     {types && types.map((type) => (
                         <option key={type.id} value={type.id}>{type.name}</option>
                     ))}
@@ -87,7 +106,19 @@ const DishForm = () => {
                 <br/>
                 <label>Source:</label>
                 <input type="text" name="source" onChange={(e) => {handleChange(e)}}/>
-                {/* INGREDIENTS */}
+                <br/>
+                <label>Ingredients:</label>
+                <IngredientForm units={units} setIngredients={setIngredients}/>
+                <table>
+                    <tbody>
+                    {ingredients && ingredients.map((ingredient, i) => (
+                        <tr key={i}>
+                            <td>{ingredient.ingredient}</td>
+                            <td>{ingredient.amount}{ingredient.unit}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                    </table>
                 <br/>
                 <label>Method:</label>
                 <textarea name="method" onChange={(e) => {handleChange(e)}}/>

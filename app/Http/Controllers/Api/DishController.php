@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Dish;
+use App\Models\Ingredient;
 
 class DishController extends Controller
 {
@@ -40,6 +41,8 @@ class DishController extends Controller
     {
         $dish = new Dish;
 
+
+
         $values = json_decode($request->values);
         $newImageName = time() . "-". $request->image->getClientOriginalName();
 
@@ -51,6 +54,15 @@ class DishController extends Controller
         $dish->notes = $values->notes;
         $dish->pic_name = $newImageName;
         $dish->save();
+
+        foreach($values->ingredients as $ingredientItem) {
+            $ingredient = new Ingredient;
+            $ingredient->ingredient = $ingredientItem->ingredient;
+            $ingredient->dish_id = $dish->id;
+            $ingredient->amount = $ingredientItem->amount;
+            $ingredient->unit = $ingredientItem->unit;
+            $ingredient->save();
+        }
 
         $request->image->move(public_path('img/dishes'), $newImageName);
 

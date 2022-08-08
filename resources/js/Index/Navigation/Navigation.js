@@ -33,7 +33,7 @@ const Navigation = ({ setSelectedType }) => {
                 Add Dish
                 </Link>
             </div>
-            <div className="nav_option">
+            <div className="nav_view">
                 View: 
                 <select onChange={changeHandler}>
                         <option key={0} value={0}>All</option>
@@ -41,11 +41,6 @@ const Navigation = ({ setSelectedType }) => {
                         <option key={type.id} value={type.id}>{type.name}</option>
                     ))}
                 </select>
-            </div>
-            <div className="nav_option">
-                <Link to={`/`}>
-                Home
-                </Link>
             </div>
         </nav>
     )

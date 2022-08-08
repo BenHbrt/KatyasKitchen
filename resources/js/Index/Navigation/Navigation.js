@@ -42,6 +42,11 @@ const Navigation = ({ setSelectedType }) => {
                     ))}
                 </select>
             </div>
+            <div className="nav_option">
+                <Link to={`/`}>
+                Home
+                </Link>
+            </div>
         </nav>
     )
 }

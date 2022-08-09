@@ -1,3 +1,5 @@
+import DeleteButtonSmall from "../Buttons/DeleteButtonSmall";
+
 const IngredientListItem = ({ ingredient, setIngredients }) => {
     
     const clickHandler = () => {
@@ -8,7 +10,7 @@ const IngredientListItem = ({ ingredient, setIngredients }) => {
         <tr>
             <td>{ingredient.ingredient}</td>
             <td>{ingredient.amount}{ingredient.unit}</td>
-            <td onClick={clickHandler}>Delete</td>
+            <DeleteButtonSmall clickHandler={clickHandler}/>
         </tr>
     )
 }

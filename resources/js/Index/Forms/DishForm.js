@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios'
 import IngredientForm from "./IngredientForm";
 import IngredientListItem from "./IngredientListItem";
+import SaveButton from "../Buttons/SaveButton";
 
 const DishForm = () => {
 
@@ -55,11 +56,11 @@ const DishForm = () => {
         setImage(e.target.files[0]);
     };
 
-    const showValues = () => {
-        console.log(values)
-        console.log(ingredients)
-        console.log(id)
-    }
+    // const showValues = () => {
+    //     console.log(values)
+    //     console.log(ingredients)
+    //     console.log(id)
+    // }
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -110,7 +111,7 @@ const DishForm = () => {
 
     return (
         <div className="dishform">
-            <p onClick={showValues}>Values</p>
+            {/* <p onClick={showValues}>Values</p> */}
             <form action="" method="post" onSubmit={(e) => {handleSubmit(e)}}>
                 <h2>Dish Form</h2>
                 <label>Name:</label>
@@ -142,7 +143,7 @@ const DishForm = () => {
                     <tbody>
                     <IngredientForm units={units} setIngredients={setIngredients}/>
                 {ingredients && ingredients.map((ingredient, i) => (
-                    <IngredientListItem key={i} ingredient={ingredient} ingredients={ingredients} setIngredients={setIngredients}/>
+                    <IngredientListItem key={i} ingredient={ingredient} setIngredients={setIngredients}/>
                     ))}
                     </tbody>
                 </table>
@@ -166,7 +167,7 @@ const DishForm = () => {
                 <label>Upload Image:</label>
                 <input type="file" name="image" onChange={handleImage} />
                 <br/>
-                <button>Submit</button>
+                <SaveButton func={handleSubmit} />
             </form>
         </div>
     )

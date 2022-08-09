@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from 'axios'
 
 const Navigation = ({ setSelectedType }) => {
 
     const [types, setTypes] = useState(null)
+    const location = useLocation();
 
     const loadData = async () => {
         const response = await axios.get(`/api/types/index`);
@@ -38,7 +39,7 @@ const Navigation = ({ setSelectedType }) => {
                 Shopping List
                 </Link>
             </div>
-            <div className="nav_view">
+            {(location.pathname == "/") && <div className="nav_view">
                 View: 
                 <select onChange={changeHandler}>
                         <option key={0} value={0}>All</option>
@@ -46,7 +47,7 @@ const Navigation = ({ setSelectedType }) => {
                         <option key={type.id} value={type.id}>{type.name}</option>
                     ))}
                 </select>
-            </div>
+            </div>}
         </nav>
     )
 }

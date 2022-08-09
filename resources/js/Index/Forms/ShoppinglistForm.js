@@ -2,16 +2,22 @@ import ReactDOMServer from "react-dom/server";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import jsPDF from "jspdf";
+import IngredientListItem from "./IngredientListItem";
+import IngredientForm from "./IngredientForm";
+import PreviewButton from "../Buttons/PreviewButton";
+import AddButton from "../Buttons/AddButton";
 
 const ShoppinglistForm = () => {
 
     const [ingredients, setIngredients] = useState([])
     const [dishes, setDishes] = useState([])
     const [selected, setSelected] = useState(null)
+    const [units, setUnits] = useState([])
 
     const loadDishes = async () => {
         const response = await axios.get(`/api/dishes/index/names`);
         setDishes(response.data)
+        setSelected(response.data[0].id)
     }
 
     // const Foo = (
@@ -55,41 +61,47 @@ const ShoppinglistForm = () => {
         setIngredients(ingredientsList)
     }
 
-    const showValues = () => {
-        console.log(dishes)
-        console.log(ingredients)
-        console.log(selected)
+    // const showValues = () => {
+    //     console.log(dishes)
+    //     console.log(ingredients)
+    //     console.log(selected)
+    // }
+
+    const loadUnits = async () => {
+        const response = await axios.get(`/api/units/index`);
+        // console.log(response.data)
+        setUnits(response.data)
     }
 
     useEffect(() => {
         loadDishes();
+        loadUnits();
     }, [ingredients]);
 
     return (
         <>
         <h1>Shopping List</h1>
-        <p onClick={showValues}>Values</p>
-        {selected && <p>Selected Dish: {selected}</p>}
+        {/* <p onClick={showValues}>Values</p> */}
+        {/* {selected && <p>Selected Dish: {selected}</p>} */}
         <select name="ingredients" onChange={handleChange} >
             {dishes && dishes.map((dish) => (
                 <option key={dish.id} value={dish.id}>{dish.name}</option>
             ))}
         </select>
-        <button onClick={loadIngredients}>Add</button>
-        <div id="report">
-        <h3>Ingredients:</h3>
+        <AddButton func={loadIngredients} />
+        <IngredientForm units={units} setIngredients={setIngredients}/>
+        {(ingredients.length > 0) && <><div id="report">
+        <h3>List Items:</h3>
             <table>
             <tbody>
-                {ingredients && ingredients.map((ingredient) => (
-                    <tr key={ingredient.id}>
-                        <td>{ingredient.ingredient}</td>
-                        <td>{ingredient.amount} {ingredient.unit}</td>
-                    </tr>
+                {ingredients.map((ingredient, i) => (
+                <IngredientListItem key={i} ingredient={ingredient} setIngredients={setIngredients}/>
                 ))}
             </tbody>
             </table>
             </div>
-        <button onClick={generatePDF}>save</button>
+        <PreviewButton generatePDF={generatePDF} />
+        </>}
         </>
     )
 }

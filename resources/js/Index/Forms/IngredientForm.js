@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AddButton from "../Buttons/AddButton";
 
 const IngredientForm = ({ units, setIngredients, ingredients }) => {
 
@@ -33,7 +34,7 @@ const IngredientForm = ({ units, setIngredients, ingredients }) => {
                     <option key={unit.id} value={unit.unit}>{unit.unit}</option>
                 ))}
             </select></td>
-            <td><p onClick={clickHandler}>Add</p></td>  
+            <AddButton func={clickHandler} />
         </tr>
     )
 }

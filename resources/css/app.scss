@@ -9,12 +9,15 @@
 @import "../js/index/Buttons/ViewButton.scss";
 @import "../js/index/Buttons/EditButton.scss";
 @import "../js/index/Buttons/DeleteButton.scss";
-// @import "../js/index/Forms/DishForm.js";
-// @import "../js/Index/Forms/IngredientForm.scss";
+@import "../js/index/Forms/DishForm.scss";
+@import "../js/Index/Forms/IngredientForm.scss";
 @import "../js/Index/Buttons/DeleteButtonSmall.scss";
 @import "../js/Index/Buttons/PreviewButton.scss";
 @import "../js/Index/Buttons/AddButton.scss";
 @import "../js/Index/Buttons/SaveButton.scss";
+@import "../js/Index/Forms/ShoppinglistForm.scss";
+@import "../js/Index/Detail/ShoppinglistPreview.scss";
+@import "../js/Index/Detail/Shoppinglist.scss";
 
 
 html {

@@ -4,12 +4,11 @@ import axios from 'axios';
 import jsPDF from "jspdf";
 import IngredientListItem from "./IngredientListItem";
 import IngredientForm from "./IngredientForm";
-import PreviewButton from "../Buttons/PreviewButton";
 import AddButton from "../Buttons/AddButton";
 
-const ShoppinglistForm = () => {
+const ShoppinglistForm = ({ ingredients, setIngredients }) => {
 
-    const [ingredients, setIngredients] = useState([])
+    // const [ingredients, setIngredients] = useState([])
     const [dishes, setDishes] = useState([])
     const [selected, setSelected] = useState(null)
     const [units, setUnits] = useState([])
@@ -42,8 +41,7 @@ const ShoppinglistForm = () => {
         const response = await axios.get(`/api/dishes/${selected}`);
         const newIngredients = response.data[0].ingredients
         let ingredientsList = []
-        const oldIngredients = ingredients
-        oldIngredients.forEach((item) => {
+        ingredients.forEach((item) => {
             ingredientsList.push(item)
         })
         newIngredients.forEach((newItem, i) => {
@@ -79,30 +77,31 @@ const ShoppinglistForm = () => {
     }, [ingredients]);
 
     return (
-        <>
-        <h1>Shopping List</h1>
+        <div className="shoppinglist_form">
         {/* <p onClick={showValues}>Values</p> */}
         {/* {selected && <p>Selected Dish: {selected}</p>} */}
-        <select name="ingredients" onChange={handleChange} >
-            {dishes && dishes.map((dish) => (
-                <option key={dish.id} value={dish.id}>{dish.name}</option>
-            ))}
-        </select>
-        <AddButton func={loadIngredients} />
-        <IngredientForm units={units} setIngredients={setIngredients}/>
-        {(ingredients.length > 0) && <><div id="report">
-        <h3>List Items:</h3>
-            <table>
-            <tbody>
-                {ingredients.map((ingredient, i) => (
-                <IngredientListItem key={i} ingredient={ingredient} setIngredients={setIngredients}/>
+            <div className="shoppinglist_form_dishes">
+            <select name="ingredients" onChange={handleChange} >
+                {dishes && dishes.map((dish) => (
+                    <option key={dish.id} value={dish.id}>{dish.name}</option>
                 ))}
-            </tbody>
-            </table>
+            </select>
+            <AddButton func={loadIngredients} />
             </div>
-        <PreviewButton generatePDF={generatePDF} />
+            <IngredientForm units={units} setIngredients={setIngredients}/>
+            {(ingredients.length > 0) && <><div id="report">
+            <h3>List Items:</h3>
+                <table>
+                <tbody>
+                    {ingredients.map((ingredient, i) => (
+                    <IngredientListItem key={i} ingredient={ingredient} setIngredients={setIngredients}/>
+                    ))}
+                </tbody>
+                </table>
+                </div>
+            
         </>}
-        </>
+        </div>
     )
 }
 export default ShoppinglistForm;

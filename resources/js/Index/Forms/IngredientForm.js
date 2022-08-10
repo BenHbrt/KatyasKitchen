@@ -26,6 +26,7 @@ const IngredientForm = ({ units, setIngredients, ingredients }) => {
     }
 
     return (
+        <div classname="ingredientform">
         <tr>
             <td><input type="text" name="name" onChange={handleUpdate} value={data.name}/></td>
             <td><input type="number" name="amount" onChange={handleUpdate} value={data.amount}/>
@@ -36,6 +37,7 @@ const IngredientForm = ({ units, setIngredients, ingredients }) => {
             </select></td>
             <AddButton func={clickHandler} />
         </tr>
+        </div>
     )
 }
 export default IngredientForm;

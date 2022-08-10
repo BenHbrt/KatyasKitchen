@@ -34,23 +34,25 @@ const DishRecipe = () => {
                     <img src={`/img/dishes/${dish.pic_name}`} alt="Picture of a dish"/>
                 </div>
                 <div className="dishrecipe_main_centre">
-                    <h3>Ingredients:</h3>
-                    <table>
-                    <tbody>
-                    {dish.ingredients.map((ingredient) => (
-                        <tr key={ingredient.id}>
-                            <td>{ingredient.ingredient}</td>
-                            <td>{ingredient.amount}{ingredient.unit}</td>
-                        </tr>
-                    ))}
-                    </tbody>
-                    </table>
+                    <h3>Ingredients</h3>
+                    <div className="ingredients">
+                    <div className="ingredients_ingredients">
+                        {dish.ingredients.map((ingredient) => (
+                            <span key={ingredient.id}>{ingredient.ingredient}</span>
+                        ))}
+                    </div>
+                    <div className="ingredients_amounts">
+                        {dish.ingredients.map((ingredient) => (
+                            <span key={ingredient.id}>{ingredient.amount}{ingredient.unit}</span>
+                        ))}
+                    </div>
+                    </div>
                 </div>
                 <div className="dishrecipe_main_right">
-                    <h3>Method:</h3>
-                    <p>{dish.method}</p>
-                    <h3>Notes:</h3>
-                    <p>{dish.notes}</p>
+                    <h3>Method</h3>
+                    <p><pre className="fromtext">{dish.method}</pre></p>
+                    <h3>Notes</h3>
+                    <p><pre className="fromtext">{dish.notes}</pre></p>
                 </div>
             </div>
             </>}

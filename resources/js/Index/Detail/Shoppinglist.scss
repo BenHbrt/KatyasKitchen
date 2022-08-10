@@ -1,0 +1,10 @@
+.shoppinglist {
+    display: flex;
+    flex-direction: row;
+
+    &_title_main {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+}

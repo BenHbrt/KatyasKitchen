@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Dish;
 use App\Models\Ingredient;
+use Illuminate\Support\Facades\File;
 
 class DishController extends Controller
 {
@@ -32,8 +33,15 @@ class DishController extends Controller
     public function destroy(Request $request)
     {
         $dish = Dish::findOrFail($request->dishID);
+        $image_path = public_path().'/img/dishes/'.$dish->pic_name;
+
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
 
         $dish->delete();
+
+        return ('Recipe deleted');
     }
 
     

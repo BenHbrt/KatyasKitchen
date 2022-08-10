@@ -1,0 +1,9 @@
+.shoppinglist_form {
+    display: flex;
+    flex-direction: column;
+
+    &_dishes {
+        display: flex;
+        flex-direction: row;
+    }
+}

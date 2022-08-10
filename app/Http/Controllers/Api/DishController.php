@@ -39,10 +39,17 @@ class DishController extends Controller
     
     public function create(Request $request)
     {
+        if ($request->image != "null") {
+            $newImageName = time() . "-". $request->image->getClientOriginalName();
+            $request->image->move(public_path('img/dishes'), $newImageName);
+        } else {
+            $newImageName = "Bakery.png";
+        }
+        
         $dish = new Dish;
 
         $values = json_decode($request->values);
-        $newImageName = time() . "-". $request->image->getClientOriginalName();
+        
 
         $dish->name = $values->name;
         $dish->type_id = $values->type_id;
@@ -62,15 +69,12 @@ class DishController extends Controller
             $ingredient->save();
         }
 
-        $request->image->move(public_path('img/dishes'), $newImageName);
-
         return 'worked';
     }
     
     public function edit(Request $request)
     {
         $values = json_decode($request->values);
-        $newImageName = time() . "-". $request->image->getClientOriginalName();
 
         $dish = Dish::findOrFail($values->id);
         $ingredientslist = Ingredient::where("dish_id", "=", $values->id)
@@ -79,13 +83,18 @@ class DishController extends Controller
             $ing->delete();
         }
 
+        if ($request->image != "null") {
+            $newImageName = time() . "-". $request->image->getClientOriginalName();
+            $request->image->move(public_path('img/dishes'), $newImageName);
+            $dish->pic_name = $newImageName;
+        }
+
         $dish->name = $values->name;
         $dish->type_id = $values->type_id;
         $dish->heading = $values->heading;
         $dish->source = $values->source;
         $dish->method = $values->method;
         $dish->notes = $values->notes;
-        $dish->pic_name = $newImageName;
         $dish->save();
 
         foreach($values->ingredients as $ingredientItem) {
@@ -96,8 +105,6 @@ class DishController extends Controller
             $ingredient->unit = $ingredientItem->unit;
             $ingredient->save();
         }
-
-        $request->image->move(public_path('img/dishes'), $newImageName);
 
         return 'worked';
     }

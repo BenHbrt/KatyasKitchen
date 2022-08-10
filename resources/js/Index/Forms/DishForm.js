@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from 'axios'
 import IngredientForm from "./IngredientForm";
 import IngredientListItem from "./IngredientListItem";
@@ -8,6 +8,7 @@ import SaveButton from "../Buttons/SaveButton";
 const DishForm = () => {
 
     const { id } = useParams();
+    const location = useLocation();
 
     const navigate = useNavigate();
     const [image, setImage] = useState(null);
@@ -106,14 +107,25 @@ const DishForm = () => {
         loadUnits();
         if (id) {
             loadData();
+        } else {
+            setValues({
+                "name": "",
+                "type_id": 1,
+                "heading": "",
+                "source": "",
+                "method": "",
+                "notes": "",
+                "ingredients": []
+            })
+            setIngredients([])
         }
-    }, []);
+    }, [location]);
 
     return (
         <div className="dishform">
             {/* <p onClick={showValues}>Values</p> */}
             <form action="" method="post" onSubmit={(e) => {handleSubmit(e)}}>
-                <h2>Dish Form</h2>
+                {(location.pathname === "/dish/form") ? <h2>New Recipe</h2> : <h2>Edit Recipe</h2>}
                 <label>Name:</label>
                 <input type="text" name="name" onChange={(e) => {handleChange(e)}} value={values.name}/>
                 <br/>
@@ -164,7 +176,8 @@ const DishForm = () => {
                 <label>Notes:</label>
                 <textarea name="notes" onChange={(e) => {handleChange(e)}} value={values.notes}/>
                 <br/>
-                <label>Upload Image:</label>
+                {(location.pathname != "/dish/form") && <><label>Current Image: {values.pic_name}</label><br/></>}
+                {(location.pathname != "/dish/form") ? <label>Upload New Image:</label> : <label>Upload Image:</label>}
                 <input type="file" name="image" onChange={handleImage} />
                 <br/>
                 <SaveButton func={handleSubmit} />

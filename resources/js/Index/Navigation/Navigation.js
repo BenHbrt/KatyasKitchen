@@ -24,23 +24,42 @@ const Navigation = ({ setSelectedType }) => {
 
     return (
         <nav>
+            {(location.pathname != "/") ? 
             <div className="nav_option">
                 <Link to={`/`}>
-                Home
+                <img src={"/img/assets/Home.png"} alt="home icon" />
+                <span>Home</span>
                 </Link>
-            </div>
+            </div> : 
+            <div className="nav_option-selected">
+            <img src={"/img/assets/Home.png"} alt="home icon" />
+            <span>Home</span>
+            </div>}
+            {(location.pathname != "/dish/form") ?
             <div className="nav_option">
                 <Link to={`/dish/form`}>
-                Add Dish
+                <img src={"/img/assets/Menu.png"} alt="recipe icon" />
+                <span>Add Recipe</span>
                 </Link>
-            </div>
+            </div> :
+            <div className="nav_option-selected">
+            <img src={"/img/assets/Menu.png"} alt="recipe icon" />
+            <span>Add Recipe</span>
+            </div>}
+            {(location.pathname != "/shoppinglist") ?
             <div className="nav_option">
                 <Link to={`/shoppinglist`}>
-                Shopping List
+                <img src={"/img/assets/Receipt.png"} alt="list icon" />
+                <span>Shopping List</span>
                 </Link>
-            </div>
+            </div> :
+            <div className="nav_option-selected">
+            <img src={"/img/assets/Receipt.png"} alt="list icon" />
+            <span>Shopping List</span>
+            </div>}
             {(location.pathname == "/") && <div className="nav_view">
-                View: 
+                <img src={"/img/assets/Search.png"} alt="search icon" />
+                <span>View</span>
                 <select onChange={changeHandler}>
                         <option key={0} value={0}>All</option>
                     {types && types.map((type) => (

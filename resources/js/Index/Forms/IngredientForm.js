@@ -26,18 +26,18 @@ const IngredientForm = ({ units, setIngredients, ingredients }) => {
     }
 
     return (
-        <div classname="ingredientform">
+        // <div classname="ingredientform">
         <tr>
             <td><input type="text" name="name" onChange={handleUpdate} value={data.name}/></td>
-            <td><input type="number" name="amount" onChange={handleUpdate} value={data.amount}/>
-            <select name="unit" onChange={handleUpdate} value={data.unit}>
+            <td><input type="number" name="amount" min="0" className="input_number" onChange={handleUpdate} value={data.amount}/></td>
+            <td><select name="unit" onChange={handleUpdate} value={data.unit}>
                 {units && units.map((unit) => (
                     <option key={unit.id} value={unit.unit}>{unit.unit}</option>
                 ))}
             </select></td>
-            <AddButton func={clickHandler} />
+            <td><AddButton func={clickHandler} /></td>
         </tr>
-        </div>
+        // </div>
     )
 }
 export default IngredientForm;

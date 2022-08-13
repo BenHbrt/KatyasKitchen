@@ -124,64 +124,82 @@ const DishForm = () => {
     return (
         <div className="dishform">
             {/* <p onClick={showValues}>Values</p> */}
-            <form action="" method="post" onSubmit={(e) => {handleSubmit(e)}}>
+            {/* <form action="" method="post" onSubmit={(e) => {handleSubmit(e)}}> */}
+            <div className="dishform_title">
                 {(location.pathname === "/dish/form") ? <h2>New Recipe</h2> : <h2>Edit Recipe</h2>}
-                <label>Name:</label>
-                <input type="text" name="name" onChange={(e) => {handleChange(e)}} value={values.name}/>
-                <br/>
-                <label>Heading:</label>
-                <input type="text" name="heading" onChange={(e) => {handleChange(e)}} value={values.heading}/>
-                <br/>
-                <label>Type:</label>
-                <select name="type_id" onChange={handleChange} value={values.type_id}>
-                    {types && types.map((type) => (
-                        <option key={type.id} value={type.id}>{type.name}</option>
-                    ))}
-                </select>
-                <br/>
-                <label>Source:</label>
-                <input type="text" name="source" onChange={(e) => {handleChange(e)}} value={values.source}/>
-                <br/>
-                <label>Ingredients:</label>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Ingredient</th>
-                            <th>Amount</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                 
-                    <tbody>
-                    <IngredientForm units={units} setIngredients={setIngredients}/>
-                {ingredients && ingredients.map((ingredient, i) => (
-                    <IngredientListItem key={i} ingredient={ingredient} setIngredients={setIngredients}/>
-                    ))}
-                    </tbody>
-                </table>
-                {/* <table>
-                    <tbody>
-                    {ingredients && ingredients.map((ingredient, i) => (
-                        <tr key={i}>
-                            <td>{ingredient.ingredient}</td>
-                            <td>{ingredient.amount}{ingredient.unit}</td>
-                        </tr>
-                    ))}
-                    </tbody>
-                    </table> */}
-                <br/>
-                <label>Method:</label>
-                <textarea name="method" onChange={(e) => {handleChange(e)}} value={values.method}/>
-                <br/>
-                <label>Notes:</label>
-                <textarea name="notes" onChange={(e) => {handleChange(e)}} value={values.notes}/>
-                <br/>
-                {(location.pathname != "/dish/form") && <><label>Current Image: {values.pic_name}</label><br/></>}
-                {(location.pathname != "/dish/form") ? <label>Upload New Image:</label> : <label>Upload Image:</label>}
-                <input type="file" name="image" onChange={handleImage} />
-                <br/>
                 <SaveButton func={handleSubmit} />
-            </form>
+            </div>
+            <div className="dishform_main">
+                <div className="dishform_main_left">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td><input type="text" name="name" onChange={(e) => {handleChange(e)}} value={values.name}/></td>
+                            </tr>
+                            <tr>
+                                <td>Heading:</td>
+                                <td><input type="text" name="heading" onChange={(e) => {handleChange(e)}} value={values.heading}/></td>
+                            </tr>
+                            <tr>
+                                <td>Type:</td>
+                                <td><select name="type_id" onChange={handleChange} value={values.type_id}>
+                                    {types && types.map((type) => (
+                                    <option key={type.id} value={type.id}>{type.name}</option>
+                                    ))}
+                                </select></td>
+                            </tr>
+                            <tr>
+                                <td>Source:</td>
+                                <td><input type="text" name="source" onChange={(e) => {handleChange(e)}} value={values.source}/></td>
+                            </tr>
+                            {(location.pathname != "/dish/form") && <tr>
+                                <td className="dishform_main_left_currentimage">Current Image:</td>
+                                <td><img className="input_image" src={`/img/dishes/${values.pic_name}`} alt="Picture of a dish"/></td>
+                                </tr>}
+                            <tr>
+                                <td>{(location.pathname != "/dish/form") ? <span>Upload New Image:</span> : <span>Upload Image:</span>}</td>
+                                <td><input type="file" name="image" onChange={handleImage} /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div className="dishform_main_centre">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Ingredient</td>
+                                <td>Amount</td>
+                                <td>Unit</td>
+                                <td></td>
+                            </tr>
+                            <IngredientForm units={units} setIngredients={setIngredients}/>
+                            {ingredients && ingredients.map((ingredient, i) => (
+                            <IngredientListItem key={i} ingredient={ingredient} setIngredients={setIngredients}/>
+                            ))}
+                        </tbody>
+                    </table>
+                        {/* <table>
+                        <tbody>
+                        {ingredients && ingredients.map((ingredient, i) => (
+                            <tr key={i}>
+                                <td>{ingredient.ingredient}</td>
+                                <td>{ingredient.amount}{ingredient.unit}</td>
+                            </tr>
+                            ))}
+                        </tbody>
+                        </table> */}
+                </div>
+                <div className="dishform_main_right">
+                    <label>Method:</label>
+                    <textarea name="method" onChange={(e) => {handleChange(e)}} value={values.method}/>
+                    <br/>
+                    <label>Notes:</label>
+                    <textarea name="notes" onChange={(e) => {handleChange(e)}} value={values.notes}/>
+                </div>
+            </div>
+                
+            
         </div>
     )
 }

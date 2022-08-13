@@ -1,40 +1,34 @@
-.dishpreview {
-    width: 30%;
-    padding: 0em 1.5em 0.5em;
-    margin: 1.5em;
+.shoppinglistpreview {
+    // width: 30%;
+    padding: 1.5em 1.5em 1em;
     box-shadow: 2px 2px 2px 2px lightgrey;
     border-radius: 1em;
     align-self: start;
 
-    & a {
-        text-decoration: none;
-        color: black;
-        align-self: center;
-    }
-
-    &_title {
+    &_top {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-
-        & > img {
-            width: 1.7em;
-            margin-top: 1.5em;
-            align-self: flex-start;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
-        &_main {
-            display: flex;
-            flex-direction: row;  
-        }
+        // align-items: flex-end;
     }
 
-    & > img {
-        max-width: 100%;
-        border-radius: 1em;
-    }  
+    &_main {
+
+    }
+
+    &_list {
+        display: flex;
+        flex-direction: row;
+        column-gap: 1em;
+
+        &_ingredients {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        &_amounts {
+            display: flex;
+            flex-direction: column;
+        }
+    }
 }

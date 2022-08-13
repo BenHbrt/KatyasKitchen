@@ -1,5 +1,68 @@
+.dishform {
+    padding: 0 2em;
+
+    &_title {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &_main {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        box-shadow: 2px 2px 2px 2px lightgray;
+        border-radius: 2em;
+        padding: 1em 1.5em 1.5em;
+
+        &_left {
+            display: flex;
+            flex-direction: row;
+            align-self: start;
+
+            &_currentimage {
+                vertical-align: top;
+            }
+
+        }
+
+        &_centre {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &_right {
+            display: flex;
+            flex-direction: column;
+            width: 35%;
+        }
+    }
+}
+
 textarea {
     font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 15em;
+    resize: none;
+}
+
+input {
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input_number {
+    width: 5em;
+}
+
+.input_image {
+    width: 10em;
+    border-radius: 1em;
+    margin-top: 0.4em;
+}
+
+select {
+    font-size: 0.9em;
     font-family: 'Poppins', sans-serif;
 }
 

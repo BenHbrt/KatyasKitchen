@@ -1,7 +1,5 @@
-import ReactDOMServer from "react-dom/server";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import jsPDF from "jspdf";
 import IngredientListItem from "./IngredientListItem";
 import IngredientForm from "./IngredientForm";
 import AddButton from "../Buttons/AddButton";
@@ -26,12 +24,6 @@ const ShoppinglistForm = ({ ingredients, setIngredients }) => {
     //             ))}
     //         </div>
     // );
-    
-    const generatePDF = () => {
-        const report = new jsPDF('portrait','pt','a4');
-        report.html(document.querySelector('#report')).then(() => {
-            report.save('report.pdf');
-    })};
 
     const handleChange = (e) => {
         setSelected(e.target.value)

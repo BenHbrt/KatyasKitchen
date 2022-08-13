@@ -1,10 +1,15 @@
 .shoppinglist {
-    display: flex;
-    flex-direction: row;
+    padding: 0 2em;
 
-    &_title_main {
+    &_title {
         display: flex;
         flex-direction: row;
         width: 100%;
+    }
+
+    &_body {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 }

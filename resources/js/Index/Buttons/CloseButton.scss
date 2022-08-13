@@ -1,0 +1,11 @@
+.button_close {  
+    & > img {
+        width: 1.7em;
+        // margin-top: 1.5em;
+        // align-self: center;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

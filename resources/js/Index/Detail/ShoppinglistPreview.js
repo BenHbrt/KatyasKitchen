@@ -1,36 +1,44 @@
-import ViewButton from "../Buttons/ViewButton"
+import jsPDF from "jspdf";
+import ReactDOMServer from "react-dom/server";
+import DownloadButton from "../Buttons/DownloadButton"
+import CloseButton from "../Buttons/CloseButton";
 
-const ShoppinglistPreview = ({ selectedDish, setSelectedDish }) => {
+const ShoppinglistPreview = ({ ingredients, setPreview }) => {
     
     const clickHandler = () => {
-        setSelectedDish(null)
+        setPreview(false)
     }
+
+    const generatePDF = () => {
+        const report = new jsPDF('portrait','pt','a4');
+        report.html(document.querySelector('#list')).then(() => {
+            report.save('Shopping List.pdf');
+    })};
     
     return (
-        <div className="dishpreview">
-            {selectedDish && 
+        <div className="shoppinglistpreview">
+            {(ingredients.length > 0) && 
             <>
-            <div className="dishpreview_title">
-                <div className="dishpreview_title_main">
-                    <h2>{selectedDish.name}</h2>
-                    <ViewButton id={selectedDish.id}/>
-                </div>
-                <img src={"/img/assets/Close.png"} alt="close icon" onClick={clickHandler} />
+            <div className="shoppinglistpreview_top">
+            <DownloadButton func={generatePDF} />
+            <CloseButton func={clickHandler} />
             </div>
-            <p>{selectedDish.heading}</p>
-            <img src={`/img/dishes/${selectedDish.pic_name}`} alt="Picture of a dish" />
-            <p><strong>Ingredients: </strong></p>
-            <table>
-            <tbody>
-            {selectedDish.ingredients.map((ingredient) => (
-                <tr key={ingredient.id}>
-                    <td>{ingredient.ingredient}</td>
-                    <td>{ingredient.amount}{ingredient.unit}</td>
-                </tr>
-            ))}
-            </tbody>
-            </table>
-            </>}      
+            <div id="list" className="shoppinglistpreview_main">
+            <h3>Shopping List</h3>
+            <div className="shoppinglistpreview_list">
+            <div className="shoppinglistpreview_list_ingredients">
+                {ingredients.map((ingredient) => (
+                    <span key={ingredient.id}>{ingredient.ingredient}</span>
+                ))}
+            </div>
+            <div className="shoppinglistpreview_list_amounts">
+                {ingredients.map((ingredient) => (
+                    <span key={ingredient.id}>{ingredient.amount}{ingredient.unit}</span>
+                ))}
+            </div>
+            </div>
+        </div></>
+            }      
         </div>
     )
 }
